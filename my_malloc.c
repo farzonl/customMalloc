@@ -1,4 +1,5 @@
 #include "my_malloc.h"
+#include <stdint.h>
 
 /* You *MUST* use this macro when calling my_sbrk to allocate the 
  * appropriate size. Failure to do so may result in an incorrect
@@ -118,13 +119,12 @@ void* my_realloc(void* ptr, size_t new_size)
 	 {
 		int indexOfCurr, indexOfRealloc;
 		indexOfRealloc = getIndex(sizeof(metadata_t)+new_size);
-		if( indexOfRealloc > MAXBUCKET) return NULL;
+		if( indexOfRealloc > MAXBUCKET) { return NULL; }
 		indexOfCurr = getIndex(sizeof(metadata_t)+ptr2->size);
-		if( indexOfRealloc > MAXBUCKET) return NULL;
 		
 		//case where its in the same bucket already 
 		//(ie not a large enough size increase)
-		if(indexOfCurr == indexOfRealloc) return ptr;
+		if(indexOfCurr == indexOfRealloc) { return ptr; }
 	 }
 		
 	//if its not malloc more memory
@@ -237,9 +237,9 @@ void merge()
             
             
 
-            step1 = (int)curr-(int)heap;
+            step1 = (intptr_t)curr-(intptr_t)heap;
             step2 = 
-                ((int)(curr+((metadata_t*)curr)->size))-(int)heap;
+                ((intptr_t)(curr+((metadata_t*)curr)->size))-(intptr_t)heap;
 
             if((step1>>(n+1) & 0x1) != (step2>>(n+1) & 0x1)){
                 return;

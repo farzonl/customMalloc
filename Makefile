@@ -1,7 +1,7 @@
 CC = gcc
 # If you have a 64-bit computer, you may want to use this instead.
 # CC = gcc -m32
-CFLAGS = -std=c99 -pedantic -Wall -Werror -lm
+CFLAGS = -std=c99 -pedantic -Wall -Werror -lm -m32 
 OPTFLAG = -O2
 DEBUGFLAG = -g
 
@@ -34,19 +34,22 @@ debug: $(PROGRAM)-debug
 check: CFLAGS += $(OPTFLAG) 
 check: $(PROGRAM)-verifier
 	@for i in 1 2 3 4; do \
-		./$(PROGRAM)-verifier $$i && exit; \
+		echo "./$(PROGRAM)-verifier $$i" && ./$(PROGRAM)-verifier $$i && exit; \
 	done; \
 	echo "Passed all cases"
 
 
+
+
 $(PROGRAM)-test: lib$(LIBRARY).a test.c
-	$(CC) $(CFLAGS) test.c -L . -l$(LIBRARY) -o $@
+	$(CC) $(CFLAGS) -g test.c -L . -l$(LIBRARY) -o $@
 
 $(PROGRAM)-debug: lib$(LIBRARY).a test.c
-	$(CC) $(CFLAGS) test.c -L . -l$(LIBRARY) -o $@
+	$(CC) $(CFLAGS) -g test.c -L . -l$(LIBRARY) -o $@
 
 $(PROGRAM)-verifier: student_verifier.o lib$(LIBRARY).a
-	$(CC) $(CFLAGS) $< -L . -l$(LIBRARY) -o $@
+	$(CC) $(CFLAGS) $< -L . -g -l$(LIBRARY) -o $@
+
 
 OFILES = $(patsubst %.c,%.o,$(CFILES))
 
