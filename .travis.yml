@@ -1,0 +1,5 @@
+
+language: c
+sudo: required
+script:
+- make test && make check

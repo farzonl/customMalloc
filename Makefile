@@ -1,7 +1,7 @@
 CC = gcc
 # If you have a 64-bit computer, you may want to use this instead.
 # CC = gcc -m32
-CFLAGS = -ansi -pedantic -Wall -Werror -lm
+CFLAGS = -std=c99 -pedantic -Wall -Werror -lm
 OPTFLAG = -O2
 DEBUGFLAG = -g
 
