@@ -37,7 +37,7 @@ int logBase2( int a)
 {
  int total = ((int)sizeof(int))*8;
  if (a < 0)
-	return; 
+    return; 
  if (!a)
     return -1;
  
@@ -45,12 +45,12 @@ int logBase2( int a)
   //printf("total: %d\n",total);
   for(int i = total>>1 /*total*/; i > 0;i = i>>1)
   {
-	//printf("i: %d\t",i);
-	if (a >= 1<<i) 
-	{ 
-		a >>= i; 
-		pos +=i; 
-	}
+    //printf("i: %d\t",i);
+    if (a >= 1<<i) 
+    { 
+        a >>= i; 
+        pos +=i; 
+    }
   }
   if (a >= 1<< 1) pos +=  1;
   
@@ -63,17 +63,17 @@ int main()
   for(int i = 0; i < 11; i++)
   {
     //printf("power = %d\nbase = %d\nresult = %d\n",i,base,powFunc(i,base));
-	printf("power = %d\nresult = %d\n",i,powFunc(i,base));
-	
+    printf("power = %d\nresult = %d\n",i,powFunc(i,base));
+    
   }*/
   /*
   int size = 2049;
   printf("size = %d\n index: = %d\n",size, getIndex(size));*/
    for(int i = 1; i < 512; i= i<<1)
    {
-	printf("log of %d = %d\n",i,logBase2(i));
-	if(i == 0)
-		i = 1;
+    printf("log of %d = %d\n",i,logBase2(i));
+    if(i == 0)
+        i = 1;
    }
   //printf("%ld",sizeof(int));
 }

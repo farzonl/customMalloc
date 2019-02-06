@@ -4,7 +4,7 @@
 
 
 void heap_report(){
-	printf("in heap report\n");
+    printf("in heap report\n");
     char* curr = heap;
     char* highest = heapEnd;   
     while(curr != highest){
